@@ -1,4 +1,6 @@
-# A LSTM based framework for handling multiclass imbalance in DGA botnet detection. This repo contains very simple code for classifying domains as DGA or benign. This code demonstrates our results in our paper here: https://www.sciencedirect.com/science/article/pii/S0925231217317320
+# A LSTM based framework for handling multiclass imbalance in DGA botnet detection. This repo contains very simple code for classifying domains as DGA or benign
+
+This code demonstrates our results in our paper here: https://www.sciencedirect.com/science/article/pii/S0925231217317320
 This paper presents a novel LSTM.MI algorithm to combine both binary and multiclass classification models, where the original LSTM is adapted to be cost-sensitive. The cost items are introduced into backpropagation learning procedure to take into account the identification importance among classes.
 
 Follow the instructions, you can reimplement our method. Besides, we also provide some datasets:
