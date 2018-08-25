@@ -1,30 +1,20 @@
 """Train and test LSTM classifier"""
 import numpy as np
+import os
+import random
+import csv
+import collections
+import math
+import pandas as pd
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation
 from keras.layers.embeddings import Embedding
 from keras.layers.recurrent import LSTM
-from keras import metrics
-import sklearn
-from sklearn.preprocessing import label_binarize
 from sklearn.cross_validation import train_test_split
 from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.metrics import precision_score, recall_score, confusion_matrix, classification_report,accuracy_score, f1_score
-from sklearn.metrics import roc_curve, auc
-import collections
-import math
-import pandas as pd
-from scipy import interp
+from sklearn.metrics import precision_score, recall_score, classification_report,accuracy_score, f1_score
 from datetime import datetime
-from StringIO import StringIO
-from urllib import urlopen
-from zipfile import ZipFile
-import cPickle as pickle
-import os
-import random
-import tldextract
-import csv
 
 
 def get_data(): 
@@ -73,7 +63,6 @@ def create_class_weight(labels_dict,mu):
         score = math.pow(total/float(labels_dict[key]),mu)
 	class_weight[key] = score	
 
-
     return class_weight
 
 def classifaction_report_csv(report,precision,recall,f1_score,fold):
@@ -113,7 +102,7 @@ def classifaction_report_csv(report,precision,recall,f1_score,fold):
         dataframe = pd.DataFrame.from_dict(report_data)
         dataframe.to_csv(f, index = False)
 
-def run(max_epoch=25, nfolds=10, batch_size=128):
+def run(max_epoch=20, nfolds=10, batch_size=128):
     """Run train/test on logistic regression model"""
 
     #Begin preprocessing stage
@@ -172,7 +161,7 @@ def run(max_epoch=25, nfolds=10, batch_size=128):
         class_weight = create_class_weight(labels_dict,0.1)
         best_auc = 0.0
         #20
-        for ep in range(20):
+        for ep in range(max_epoch):
             model.fit(X_train, y_train, batch_size=batch_size, nb_epoch=1, class_weight=class_weight)
             t_probs = model.predict_proba(X_holdout)
             t_result = [0 if(x<=0.5) else 1 for x in t_probs]
@@ -209,7 +198,7 @@ def run(max_epoch=25, nfolds=10, batch_size=128):
         print class_weight
         best_acc = 0.0
         #20
-        for ep in range(20):
+        for ep in range(max_epoch):
             model_dga.fit(X_train, y_train, batch_size=batch_size, nb_epoch=1, class_weight=class_weight)
             y_pred= model_dga.predict_proba(X_holdout)
             y_result = [np.argmax(x) for x in y_pred]  

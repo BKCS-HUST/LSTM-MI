@@ -4,7 +4,7 @@ This repo contains very simple code for classifying domains as DGA or benign. Th
 
 Follow the instructions, you can reimplement our method. Besides, we also provide some datasets:
 
-- The real-world collected datasets of some DGA botnet including Shifu, Tinba, Necurs, Locky, etc.
+- The real-world collected datasets of some DGA botnet including Shifu, Tinba, Necurs and Locky at https://www.stratosphereips.org/category/dataset.html.
 - trainingdata.csv: This dataset contains 1 million normal domains of Alexa, over 600,000 DGA domains, and 8 statistic features corresponding to these domains. The DGA domains are collected at http://osint.bambenekconsulting.com/feeds/.
 - traindga4.csv: 10% of trainingdata dataset. However, 8 statistic features are not normalized into the values ranging from 0 to 1.
 - traindga5.csv: 10% of trainingdata dataset. However, 8 statistic features are normalized into the values ranging from 0 to 1.
