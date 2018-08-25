@@ -1,31 +1,18 @@
-# A LSTM based framework for handling multiclass imbalance in DGA botnet detection. 
+# A LSTM based framework for handling multiclass imbalance in DGA botnet detection.
 
-This repo contains very simple code for classifying domains as DGA or benign. This code demonstrates our results in our paper here: https://www.sciencedirect.com/science/article/pii/S0925231217317320. This paper presents a novel LSTM.MI algorithm to combine both binary and multiclass classification models, where the original LSTM is adapted to be cost-sensitive. The cost items are introduced into backpropagation learning procedure to take into account the identification importance among classes.
-
-Follow the instructions, you can reimplement our method. Besides, we also provide some datasets:
-
-- The real-world collected datasets of some DGA botnet including Shifu, Tinba, Necurs and Locky at https://www.stratosphereips.org/category/dataset.html.
-- trainingdata.csv: This dataset contains 1 million normal domains of Alexa, over 600,000 DGA domains, and 8 statistic features corresponding to these domains. The DGA domains are collected at http://osint.bambenekconsulting.com/feeds/.
-- traindga4.csv: 10% of trainingdata dataset. However, 8 statistic features are not normalized into the values ranging from 0 to 1.
-- traindga5.csv: 10% of trainingdata dataset. However, 8 statistic features are normalized into the values ranging from 0 to 1.
-
-**If you reuse our dataset, please cite out paper as follows.**
-
-Tran, Duc, et al. "A LSTM based framework for handling multiclass imbalance in DGA botnet detection." Neurocomputing 275 (2018): 2401-2413.
-
+This repo contains the code for classifying domains in order to detect DGA bots. This code demonstrates the results in the paper: https://www.sciencedirect.com/science/article/pii/S0925231217317320, which presents a novel LSTM.MI algorithm to combine both binary and multiclass classification models, where the original LSTM is adapted to be cost-sensitive. The cost items are introduced into backpropagation learning procedure to take into account the identification importance among classes. We also include a sample dataset, called trainingdga5.cvs for those, who would like to assess the LSTM.MI algorithm. This dataset contains 100,000 domains from Alexa and over 60,000 DGA domains. The ID related to Alexa class is 20.
+**If you reuse this code, please cite the following paper**
+Tran D., Mac H., Tong V., Tran H.A. and Nguyen L.G., "A LSTM based framework for handling multiclass imbalance in DGA botnet detection." Neurocomputing, vol. 275, pp. 2401-2413, 2018.
 or
-
 @article{tran2018lstm,
-  title={A LSTM based framework for handling multiclass imbalance in DGA botnet detection},
-  author={Tran, Duc and Mac, Hieu and Tong, Van and Tran, Hai Anh and Nguyen, Linh Giang},
-  journal={Neurocomputing},
-  volume={275},
-  pages={2401--2413},
-  year={2018},
-  publisher={Elsevier}
+ title={A LSTM based framework for handling multiclass imbalance in DGA botnet detection},
+ author={Tran, Duc and Mac, Hieu and Tong, Van and Tran, Hai Anh and Nguyen, Linh Giang},
+ journal={Neurocomputing},
+ volume={275},
+ pages={2401--2413},
+ year={2018},
+ publisher={Elsevier}
 }
 
-## Implementing the code
+Note that the lstm.py will train the classifier and generate the report, related to the evaluation of the LSTM.MI. This code was run on CPU, but can be implemented with GPU to reduce the computational cost.
 
-'lstm.py' will trainthe classifier and generate the report to evaluate the method. This code will run on your local machine or on a machine with a GPU (GPU will of course be much faster).
-  
